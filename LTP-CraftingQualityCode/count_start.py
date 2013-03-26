@@ -23,11 +23,21 @@ def count_startswith(L, ch):
     return len(L) - len(startswith)
     """
 
+    """
     startswith = []
 
     for item in L:
         if item.startswith(ch):
             startswith.append(item)
+
+    return len(startswith)
+    """
+
+    startswith = L[:]
+
+    for item in L:
+        if not item.startswith(ch):
+            startswith.remove(item)
 
     return len(startswith)
 
