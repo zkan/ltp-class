@@ -152,6 +152,24 @@ class Maze:
                 if item == SPROUT: 
                     self.num_sprouts_left += 1
 
+    def is_wall(self, row, col):
+        """
+        (Maze, int, int) -> bool
+
+        Return True if and only if there is a wall at the given row and column of the maze. 
+
+        >>> m = Maze([['#', '#', '#', '#', '#', '#', '#'], ['#', '.', '.', '.', '.', '.', '#'], ['#', '.', '#', '#', '#', '.', '#'], ['#', '.', '.', '@', '#', '.', '#'], ['#', '@', '#', '.', '@', '.', '#'], ['#', '#', '#', '#', '#', '#', '#']], Rat('J', 1, 1), Rat('P', 1, 4)) 
+        >>> m.is_wall(0, 0)
+        True
+        >>> m.is_wall(1, 4)
+        False
+        """
+
+        if self.maze[row][col] == WALL:
+            return True
+        else:
+            return False
+
 
 if __name__ == '__main__':
     import doctest
