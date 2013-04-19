@@ -7,16 +7,16 @@ class TestRatMethods(unittest.TestCase):
     def test_init_rat(self): 
         """ Test __init__ with symbol 'P' at the location (1, 4). """
 
-        actual = a2.Rat('P', 1, 4)
+        rat = a2.Rat('P', 1, 4)
         expected_symbol = 'P'
         expected_row = 1
         expected_col = 4
         expected_num_sprouts_eaten = 0
 
-        self.assertEqual(expected_symbol, actual.symbol)
-        self.assertEqual(expected_row, actual.row)
-        self.assertEqual(expected_col, actual.col)
-        self.assertEqual(expected_num_sprouts_eaten, actual.num_sprouts_eaten)
+        self.assertEqual(expected_symbol, rat.symbol)
+        self.assertEqual(expected_row, rat.row)
+        self.assertEqual(expected_col, rat.col)
+        self.assertEqual(expected_num_sprouts_eaten, rat.num_sprouts_eaten)
 
     def test_set_location(self):
         """ Test set_location to be at (2, 3). """
@@ -33,7 +33,7 @@ class TestRatMethods(unittest.TestCase):
 
     def test_eat_sprout(self):
         """ Test eat_sprout, so the number of sprouts eaten 
-        increases by one for the particular rat. """
+        increases by one for the rat. """
 
         rat = a2.Rat('P', 1, 4)
         rat.eat_sprout()

@@ -42,7 +42,7 @@ class Rat:
         """
         (Rat, str, int, int) -> NoneType 
         
-        Initialize Rat with symbol at location (row, col). 
+        Initialize a rat with symbol at location (row, col). 
 
         >>> rat = Rat('P', 1, 4)
         >>> rat.symbol
@@ -64,7 +64,7 @@ class Rat:
         """ 
         (Rat, int, int) -> NoneType 
 
-        Set the location for Rat. 
+        Set the location for the rat. 
 
         >>> rat = Rat('P', 1, 4)
         >>> rat.set_location(2, 3)
@@ -82,7 +82,7 @@ class Rat:
         (Rat) -> NoneType
 
         Eat a sprout, so the number of sprouts eaten increases by one for 
-        the particular rat. 
+        the rat. 
 
         >>> rat = Rat('P', 1, 4)
         >>> rat.eat_sprout()
@@ -111,12 +111,49 @@ class Rat:
                                                            self.col, 
                                                            self.num_sprouts_eaten)
 
+
 class Maze:
     """ A 2D maze. """
 
     # Write your Maze methods here.
 
+    def __init__(self, maze, rat_1, rat_2):
+        """
+        (Maze, list of list of str, Rat, Rat) -> NoneType
+
+        Initialize a maze with a given maze and two rats. 
+
+        >>> m = Maze([['#', '#', '#', '#', '#', '#', '#'], ['#', '.', '.', '.', '.', '.', '#'], ['#', '.', '#', '#', '#', '.', '#'], ['#', '.', '.', '@', '#', '.', '#'], ['#', '@', '#', '.', '@', '.', '#'], ['#', '#', '#', '#', '#', '#', '#']], Rat('J', 1, 1), Rat('P', 1, 4)) 
+        >>> m.maze
+        [['#', '#', '#', '#', '#', '#', '#'], ['#', '.', '.', '.', '.', '.', '#'], ['#', '.', '#', '#', '#', '.', '#'], ['#', '.', '.', '@', '#', '.', '#'], ['#', '@', '#', '.', '@', '.', '#'], ['#', '#', '#', '#', '#', '#', '#']]
+        >>> m.rat_1.symbol
+        'J'
+        >>> m.rat_1.row
+        1
+        >>> m.rat_1.col
+        1
+        >>> m.rat_2.symbol
+        'P'
+        >>> m.rat_2.row
+        1
+        >>> m.rat_2.col
+        4
+        >>> m.num_sprouts_left
+        3
+        """
+
+        self.maze = maze
+        self.rat_1 = rat_1
+        self.rat_2 = rat_2
+        self.num_sprouts_left = 0
+
+        for l in self.maze:
+            for item in l:
+                if item == SPROUT: 
+                    self.num_sprouts_left += 1
+
 
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
+
