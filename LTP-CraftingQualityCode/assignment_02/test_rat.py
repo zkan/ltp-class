@@ -11,10 +11,12 @@ class TestInitializeRat(unittest.TestCase):
         expected_symbol = 'P'
         expected_row = 1
         expected_col = 4
+        expected_num_sprouts_eaten = 0
 
         self.assertEqual(expected_symbol, actual.symbol)
         self.assertEqual(expected_row, actual.row)
         self.assertEqual(expected_col, actual.col)
+        self.assertEqual(expected_num_sprouts_eaten, actual.num_sprouts_eaten)
 
 
 if __name__ == '__main__':

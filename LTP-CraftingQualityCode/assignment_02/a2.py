@@ -37,8 +37,36 @@ class Rat:
     """ A rat caught in a maze. """
 
     # Write your Rat methods here.
+    
+    def __init__(self, symbol, row, col):
+        """
+        (Rat, str, int, int) -> NoneType
+        
+        Initialize Rat with symbol at location (row, col)
+
+        >>> rat = Rat('P', 1, 4)
+        >>> rat.symbol
+        'P'
+        >>> rat.row
+        1
+        >>> rat.col
+        4
+        >>> rat.num_sprouts_eaten
+        0
+        """
+
+        self.symbol = symbol
+        self.row = row
+        self.col = col
+        self.num_sprouts_eaten = 0
+
 
 class Maze:
     """ A 2D maze. """
 
     # Write your Maze methods here.
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
