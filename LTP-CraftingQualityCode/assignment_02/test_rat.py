@@ -31,6 +31,17 @@ class TestRatMethods(unittest.TestCase):
         self.assertEqual(expected_row, actual_row)
         self.assertEqual(expected_col, actual_col)
 
+    def test_eat_sprout(self):
+        """ Test eat_sprout, so the number of sprouts eaten 
+        increases by one for the particular rat """
+
+        rat = a2.Rat('P', 1, 4)
+        rat.eat_sprout()
+        actual_num_sprouts_eaten = rat.num_sprouts_eaten
+        expected_num_sprouts_eaten = 1
+
+        self.assertEqual(expected_num_sprouts_eaten, actual_num_sprouts_eaten)
+
 
 if __name__ == '__main__':
     unittest.main(exit=False)

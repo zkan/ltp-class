@@ -40,9 +40,9 @@ class Rat:
     
     def __init__(self, symbol, row, col):
         """
-        (Rat, str, int, int) -> NoneType
+        (Rat, str, int, int) -> NoneType 
         
-        Initialize Rat with symbol at location (row, col)
+        Initialize Rat with symbol at location (row, col). 
 
         >>> rat = Rat('P', 1, 4)
         >>> rat.symbol
@@ -62,9 +62,9 @@ class Rat:
     
     def set_location(self, row, col):
         """ 
-        (Rat, int, int) -> NoneType
+        (Rat, int, int) -> NoneType 
 
-        Set the location for Rat
+        Set the location for Rat. 
 
         >>> rat = Rat('P', 1, 4)
         >>> rat.set_location(2, 3)
@@ -76,6 +76,21 @@ class Rat:
 
         self.row = row
         self.col = col
+
+    def eat_sprout(self):
+        """
+        (Rat) -> NoneType
+
+        Eat a sprout, so the number of sprouts eaten increases by one for 
+        the particular rat. 
+
+        >>> rat = Rat('P', 1, 4)
+        >>> rat.eat_sprout()
+        >>> rat.num_sprouts_eaten
+        1
+        """
+
+        self.num_sprouts_eaten += 1
 
 
 class Maze:
