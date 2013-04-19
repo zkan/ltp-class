@@ -193,10 +193,8 @@ class Maze:
             return self.rat_1.symbol
         elif self.rat_2.row == row and self.rat_2.col == col:
             return self.rat_2.symbol
-        elif self.maze[row][col] == WALL:
-            return WALL
-        else: 
-            return HALL
+        
+        return self.maze[row][col]
 
     def move(self, rat, v_direct, h_direct):
         """
