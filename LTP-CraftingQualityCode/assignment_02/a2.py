@@ -170,6 +170,31 @@ class Maze:
         else:
             return False
 
+    def get_character(self, row, col):
+        """
+        (Maze, int, int) -> str
+
+        Return the character in the maze at the given row and column. If there is a rat 
+        at that location, then its character should be returned rather than HALL. 
+
+        >>> m = Maze([['#', '#', '#', '#', '#', '#', '#'], ['#', '.', '.', '.', '.', '.', '#'], ['#', '.', '#', '#', '#', '.', '#'], ['#', '.', '.', '@', '#', '.', '#'], ['#', '@', '#', '.', '@', '.', '#'], ['#', '#', '#', '#', '#', '#', '#']], Rat('J', 1, 1), Rat('P', 1, 4)) 
+        >>> m.get_character(1, 1)
+        'J'
+        >>> m.get_character(1, 4)
+        'P'
+        >>> m.get_character(1, 2)
+        '.'
+        """
+
+        # Check the location of rat 1
+        if self.rat_1.row == row and self.rat_1.col == col:
+            return self.rat_1.symbol
+
+        if self.rat_2.row == row and self.rat_2.col == col:
+            return self.rat_2.symbol
+
+        return HALL
+
 
 if __name__ == '__main__':
     import doctest

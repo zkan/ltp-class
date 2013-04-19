@@ -46,7 +46,7 @@ class TestMazeMethods(unittest.TestCase):
         self.assertTrue(m.is_wall(0, 0))
 
     def test_is_not_wall(self):
-        """ Test is_wall to check if there is not a wall at the given row and column of the maze. 
+        """ Test is_wall to check if there is NOT a wall at the given row and column of the maze. 
         Suppose (1, 4) is given. """
 
         m = a2.Maze([['#', '#', '#', '#', '#', '#', '#'], 
@@ -59,6 +59,36 @@ class TestMazeMethods(unittest.TestCase):
                      a2.Rat('P', 1, 4))
         
         self.assertFalse(m.is_wall(1, 4))
+
+    def test_get_character(self):
+        """ Test if there is a rat at the location, then its character should be returned rather than HALL. 
+        Suppose (1, 4) is given. """
+
+        m = a2.Maze([['#', '#', '#', '#', '#', '#', '#'], 
+                     ['#', '.', '.', '.', '.', '.', '#'], 
+                     ['#', '.', '#', '#', '#', '.', '#'], 
+                     ['#', '.', '.', '@', '#', '.', '#'], 
+                     ['#', '@', '#', '.', '@', '.', '#'], 
+                     ['#', '#', '#', '#', '#', '#', '#']], 
+                     a2.Rat('J', 1, 1),
+                     a2.Rat('P', 1, 4))
+        
+        self.assertEqual(m.get_character(1, 4), 'P')
+    
+    def test_get_not_character(self):
+        """ Test if there is NOT a rat at the location, then return HALL. 
+        Suppose (1, 2) is given. """
+
+        m = a2.Maze([['#', '#', '#', '#', '#', '#', '#'], 
+                     ['#', '.', '.', '.', '.', '.', '#'], 
+                     ['#', '.', '#', '#', '#', '.', '#'], 
+                     ['#', '.', '.', '@', '#', '.', '#'], 
+                     ['#', '@', '#', '.', '@', '.', '#'], 
+                     ['#', '#', '#', '#', '#', '#', '#']], 
+                     a2.Rat('J', 1, 1),
+                     a2.Rat('P', 1, 4))
+        
+        self.assertEqual(m.get_character(1, 2), a2.HALL)
 
 
 if __name__ == '__main__':
