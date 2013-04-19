@@ -59,6 +59,23 @@ class Rat:
         self.row = row
         self.col = col
         self.num_sprouts_eaten = 0
+    
+    def set_location(self, row, col):
+        """ 
+        (Rat, int, int) -> NoneType
+
+        Set the location for Rat
+
+        >>> rat = Rat('P', 1, 4)
+        >>> rat.set_location(2, 3)
+        >>> rat.row
+        2
+        >>> rat.col
+        3
+        """
+
+        self.row = row
+        self.col = col
 
 
 class Maze:
