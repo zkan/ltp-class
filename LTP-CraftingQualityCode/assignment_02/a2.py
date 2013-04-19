@@ -202,7 +202,16 @@ class Maze:
         Return True if and only if there wasn't a wall in the way. 
         """
 
-        pass
+        new_row = rat.row + v_direct
+        new_col = rat.col + h_direct
+
+        if self.maze[new_row][new_col] != WALL:
+            rat.row = new_row
+            rat.col = new_col
+            if self.maze[new_row][new_col] == SPROUT:
+                self.maze[new_row][new_col] = HALL
+                self.num_sprouts_left -= 1
+                rat.num_sprouts_eaten += 1
 
     def __str__(self):
         """
@@ -210,8 +219,28 @@ class Maze:
 
         Return a string representation of the maze.
         """
+        
+        result = ''
+        row = 0
+        for l in self.maze:
+            col = 0
+            for item in l:
+                if self.rat_1.row == row and self.rat_1.col == col:
+                    result += self.rat_1.symbol
+                elif self.rat_2.row == row and self.rat_2.col == col:
+                    result += self.rat_2.symbol
+                else:            
+                    result += item
 
-        return '#######\n#J..P.#\n#.###.#\n#..@#.#\n#@#.@.#\n#######\nJ at (1, 1) ate 0 sprouts.\nP at (1, 4) ate 0 sprouts.'
+                col += 1
+
+            result += '\n'
+            row += 1
+
+        result += '{0} at ({1}, {2}) ate {3} sprouts.\n'.format(self.rat_1.symbol, self.rat_1.row, self.rat_1.col, self.rat_1.num_sprouts_eaten)
+        result += '{0} at ({1}, {2}) ate {3} sprouts.'.format(self.rat_2.symbol, self.rat_2.row, self.rat_2.col, self.rat_2.num_sprouts_eaten)
+
+        return result
 
 
 if __name__ == '__main__':

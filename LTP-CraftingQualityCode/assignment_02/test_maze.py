@@ -90,11 +90,85 @@ class TestMazeMethods(unittest.TestCase):
         
         self.assertEqual(m.get_character(1, 2), a2.HALL)
 
-    def test_move(self):
-        """ Test if the rat moves in the given direction, unless there is a wall in the way. 
-        Have the rat eat the Brussels sprout at that location if present. """
+    def test_move_rat_1_without_problem(self):
+        """ Test if the rat moves in the given direction without any problem. """
 
-        pass
+        m = a2.Maze([['#', '#', '#', '#', '#', '#', '#'], 
+                     ['#', '.', '.', '.', '.', '.', '#'], 
+                     ['#', '.', '#', '#', '#', '.', '#'], 
+                     ['#', '.', '.', '@', '#', '.', '#'], 
+                     ['#', '@', '#', '.', '@', '.', '#'], 
+                     ['#', '#', '#', '#', '#', '#', '#']], 
+                     a2.Rat('J', 1, 1),
+                     a2.Rat('P', 1, 4))
+
+        m.move(m.rat_1, a2.NO_CHANGE, a2.RIGHT)
+        expected_rat_1_row = 1
+        expected_rat_1_col = 2
+        expected_rat_1_num_sprouts_eaten = 0
+        expected_maze_num_sprouts_left = 3
+
+        self.assertEqual(expected_rat_1_row, m.rat_1.row)
+        self.assertEqual(expected_rat_1_col, m.rat_1.col)
+        self.assertEqual(expected_rat_1_num_sprouts_eaten, m.rat_1.num_sprouts_eaten)
+        self.assertEqual(expected_maze_num_sprouts_left, m.num_sprouts_left)
+    
+    def test_move_rat_1_hits_wall(self):
+        """ Test if the rat moves in the given direction and hits the wall. """
+
+        m = a2.Maze([['#', '#', '#', '#', '#', '#', '#'], 
+                     ['#', '.', '.', '.', '.', '.', '#'], 
+                     ['#', '.', '#', '#', '#', '.', '#'], 
+                     ['#', '.', '.', '@', '#', '.', '#'], 
+                     ['#', '@', '#', '.', '@', '.', '#'], 
+                     ['#', '#', '#', '#', '#', '#', '#']], 
+                     a2.Rat('J', 1, 1),
+                     a2.Rat('P', 1, 4))
+
+        m.move(m.rat_1, a2.NO_CHANGE, a2.LEFT)
+        expected_rat_1_row = 1
+        expected_rat_1_col = 1
+        expected_rat_1_num_sprouts_eaten = 0
+        expected_maze_num_sprouts_left = 3
+
+        self.assertEqual(expected_rat_1_row, m.rat_1.row)
+        self.assertEqual(expected_rat_1_col, m.rat_1.col)
+        self.assertEqual(expected_rat_1_num_sprouts_eaten, m.rat_1.num_sprouts_eaten)
+        self.assertEqual(expected_maze_num_sprouts_left, m.num_sprouts_left)
+    
+    def test_move_rat_1_finds_sprout(self):
+        """ Test if the rat moves in the given direction and finds a sprout. """
+
+        m = a2.Maze([['#', '#', '#', '#', '#', '#', '#'], 
+                     ['#', '.', '.', '.', '.', '.', '#'], 
+                     ['#', '.', '#', '#', '#', '.', '#'], 
+                     ['#', '.', '.', '@', '#', '.', '#'], 
+                     ['#', '@', '#', '.', '@', '.', '#'], 
+                     ['#', '#', '#', '#', '#', '#', '#']], 
+                     a2.Rat('J', 1, 1),
+                     a2.Rat('P', 1, 4))
+        
+        actual_character_at_location = m.maze[4][1]
+        expected_character_at_location = a2.SPROUT
+        self.assertEqual(expected_character_at_location, actual_character_at_location)
+
+        m.move(m.rat_1, a2.DOWN, a2.NO_CHANGE)
+        m.move(m.rat_1, a2.DOWN, a2.NO_CHANGE)
+        m.move(m.rat_1, a2.DOWN, a2.NO_CHANGE)
+
+        expected_rat_1_row = 4
+        expected_rat_1_col = 1
+        expected_rat_1_num_sprouts_eaten = 1
+        expected_maze_num_sprouts_left = 2
+        
+        actual_character_at_new_location = m.maze[4][1]
+        expected_character_at_new_location = a2.HALL
+        self.assertEqual(expected_character_at_new_location, actual_character_at_new_location)
+
+        self.assertEqual(expected_rat_1_row, m.rat_1.row)
+        self.assertEqual(expected_rat_1_col, m.rat_1.col)
+        self.assertEqual(expected_rat_1_num_sprouts_eaten, m.rat_1.num_sprouts_eaten)
+        self.assertEqual(expected_maze_num_sprouts_left, m.num_sprouts_left)
 
     def test_str_repr(self):
         """ Test the string representation of the maze. """
