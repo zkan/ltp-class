@@ -184,16 +184,19 @@ class Maze:
         'P'
         >>> m.get_character(1, 2)
         '.'
+        >>> m.get_character(0, 0)
+        '#'
         """
 
         # Check the location of rat 1
         if self.rat_1.row == row and self.rat_1.col == col:
             return self.rat_1.symbol
-
-        if self.rat_2.row == row and self.rat_2.col == col:
+        elif self.rat_2.row == row and self.rat_2.col == col:
             return self.rat_2.symbol
-
-        return HALL
+        elif self.maze[row][col] == WALL:
+            return WALL
+        else: 
+            return HALL
 
     def move(self, rat, v_direct, h_direct):
         """
