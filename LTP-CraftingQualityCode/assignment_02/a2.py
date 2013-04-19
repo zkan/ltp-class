@@ -195,6 +195,24 @@ class Maze:
 
         return HALL
 
+    def move(self, rat, v_direct, h_direct):
+        """
+        (Maze, Rat, int, int) -> bool
+
+        Return True if and only if there wasn't a wall in the way. 
+        """
+
+        pass
+
+    def __str__(self):
+        """
+        (Maze) -> str
+
+        Return a string representation of the maze.
+        """
+
+        return '#######\n#J..P.#\n#.###.#\n#..@#.#\n#@#.@.#\n#######\nJ at (1, 1) ate 0 sprouts.\nP at (1, 4) ate 0 sprouts.'
+
 
 if __name__ == '__main__':
     import doctest

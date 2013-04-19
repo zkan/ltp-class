@@ -90,6 +90,29 @@ class TestMazeMethods(unittest.TestCase):
         
         self.assertEqual(m.get_character(1, 2), a2.HALL)
 
+    def test_move(self):
+        """ Test if the rat moves in the given direction, unless there is a wall in the way. 
+        Have the rat eat the Brussels sprout at that location if present. """
+
+        pass
+
+    def test_str_repr(self):
+        """ Test the string representation of the maze. """
+
+        m = a2.Maze([['#', '#', '#', '#', '#', '#', '#'], 
+                     ['#', '.', '.', '.', '.', '.', '#'], 
+                     ['#', '.', '#', '#', '#', '.', '#'], 
+                     ['#', '.', '.', '@', '#', '.', '#'], 
+                     ['#', '@', '#', '.', '@', '.', '#'], 
+                     ['#', '#', '#', '#', '#', '#', '#']], 
+                     a2.Rat('J', 1, 1),
+                     a2.Rat('P', 1, 4))
+        actual = m.__str__()
+        expected = '#######\n#J..P.#\n#.###.#\n#..@#.#\n#@#.@.#\n#######\nJ at (1, 1) ate 0 sprouts.\nP at (1, 4) ate 0 sprouts.' 
+
+        self.assertEqual(expected, actual)
+
 
 if __name__ == '__main__':
     unittest.main(exit=False)
+
