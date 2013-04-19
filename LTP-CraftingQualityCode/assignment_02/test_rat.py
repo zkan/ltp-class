@@ -2,10 +2,10 @@ import a2
 import unittest
 
 class TestRatMethods(unittest.TestCase): 
-    """ Test class for methods in class Rat """ 
+    """ Test class for methods in class Rat. """ 
 
     def test_init_rat(self): 
-        """ Test __init__ with symbol 'P' at the location (1, 4) """
+        """ Test __init__ with symbol 'P' at the location (1, 4). """
 
         actual = a2.Rat('P', 1, 4)
         expected_symbol = 'P'
@@ -19,7 +19,7 @@ class TestRatMethods(unittest.TestCase):
         self.assertEqual(expected_num_sprouts_eaten, actual.num_sprouts_eaten)
 
     def test_set_location(self):
-        """ Test set_location to be at (2, 3) """
+        """ Test set_location to be at (2, 3). """
 
         rat = a2.Rat('P', 1, 4)
         rat.set_location(2, 3)
@@ -33,7 +33,7 @@ class TestRatMethods(unittest.TestCase):
 
     def test_eat_sprout(self):
         """ Test eat_sprout, so the number of sprouts eaten 
-        increases by one for the particular rat """
+        increases by one for the particular rat. """
 
         rat = a2.Rat('P', 1, 4)
         rat.eat_sprout()
@@ -42,6 +42,18 @@ class TestRatMethods(unittest.TestCase):
 
         self.assertEqual(expected_num_sprouts_eaten, actual_num_sprouts_eaten)
 
+    def test_str_repr(self):
+        """ Test the string representation of the rat. Suppose we have P at (1, 4) 
+        ate 2 sprouts. """
+
+        rat = a2.Rat('P', 1, 4)
+        rat.eat_sprout()
+        rat.eat_sprout()
+        actual = rat.__str__()
+        expected = 'P at (1, 4) ate 2 sprouts.'
+
+        self.assertEqual(expected, actual)
+    
 
 if __name__ == '__main__':
     unittest.main(exit=False)

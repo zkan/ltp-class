@@ -92,6 +92,24 @@ class Rat:
 
         self.num_sprouts_eaten += 1
 
+    def __str__(self):
+        """
+        (Rat) -> str
+
+        Return a string representation of the rat in this format 
+        symbol at (row, col) ate num_sprouts_eaten sprouts.
+
+        >>> rat = Rat('P', 1, 4)
+        >>> rat.eat_sprout()
+        >>> rat.eat_sprout()
+        >>> rat.__str__()
+        'P at (1, 4) ate 2 sprouts.'
+        """
+
+        return '{0} at ({1}, {2}) ate {3} sprouts.'.format(self.symbol, 
+                                                           self.row, 
+                                                           self.col, 
+                                                           self.num_sprouts_eaten)
 
 class Maze:
     """ A 2D maze. """
